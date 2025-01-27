@@ -1,0 +1,32 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/navbar') %>
+
+   <div class="new-message content">
+
+          <form action="/new_message" method="POST">
+            <%- include('./partials/errors.ejs') %>
+            <label for="textm"> <%= locals.user.username.toUpperCase() %>  Says: </label>
+            <textarea type="text" id="textm" name="textm"></textarea>
+                        
+            <button>Submit</button>
+        </form>
+
+
+
+
+
+
+
+
+        
+    </div> 
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

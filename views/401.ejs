@@ -1,0 +1,22 @@
+<!-- 401.ejs -->
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/navbar') %>
+    
+    <div class="new-message content">
+        <h2> <%= locals.msg %> </h2>
+        <a href="/required_login">
+            <span style="font-size: 2rem; text-decoration: underline;"> LOGIN </span>
+          </a>
+    </div>
+
+    
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

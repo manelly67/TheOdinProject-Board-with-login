@@ -1,0 +1,40 @@
+<!-- index.ejs -->
+<html>
+
+<%- include('./partials/head.ejs') %>
+
+    <body>
+        <%- include('./partials/navbar.ejs') %>
+
+            <div class="content">
+                <p class="username"> <%= `${currentUser.firstname} ${currentUser.lastname} ` %> </p>
+                <h2>All Messages</h2>
+                <div>
+                    <% if(messages.length>0) { %>
+                        <% messages.forEach( (message)=>{ %>
+                        <div>
+                            <div class="messages">
+                                <h3 class="title">
+                                    <%= `${message.firstname}  ${message.lastname} says: `%>
+                                </h3>
+                                <p class="messages">
+                                    <%= message.textm %>
+                                </p>
+                                <p class="">
+                                    <%= message.added %>
+                                </p>
+                                <% const index = message.id %>
+                            </div>
+                        </div>  
+                            <% }) %>
+                                <% } else {%>
+                                    <p> There are no messages to display...</p>
+                                    <% } %>
+                </div>
+            </div>
+
+            <%- include('./partials/footer.ejs') %>
+
+    </body>
+
+</html>

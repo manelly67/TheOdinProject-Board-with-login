@@ -1,0 +1,33 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/navbar') %>
+
+    
+   <div class="new-message content">
+   
+        <h2>Please LOGIN </h2>
+        <form action="/required_login" method="POST" autocomplete="off" novalidate>
+            <% if (locals.errors) {  %>
+                <p><%= errors %></p>
+            <%  } %>
+            
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" autocomplete="on" required>
+            <label for="user_password">Enter Password: </label>
+            <input type="password" id="user_password" name="password" autocomplete="off" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        
+       
+    </div> 
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

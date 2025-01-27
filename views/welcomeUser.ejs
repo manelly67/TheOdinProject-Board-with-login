@@ -1,0 +1,31 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/navbar') %>
+
+        <% if (newUser!==undefined){ %>
+            <div class="new-message content">
+                <h1>Welcome </h1>
+                <h1> <%= newUser.firstname %> <%= newUser.lastname %> </h1>
+                <h2> You are a new user of the <%= appObject.appName %> </h2>
+                <hr>
+                <h3>begins writing messages on the club's board</h3>
+                  <a href="/new_message">
+                    <span style="font-size: 2rem; text-decoration: underline;"> <%= appObject.title[4] %> </span>
+                  </a>
+            </div> 
+
+        <% } else { %> 
+            <h2> No new users applying at this time</h2>
+        <% } %>
+
+    
+   
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

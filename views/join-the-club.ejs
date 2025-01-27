@@ -1,0 +1,56 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/navbar') %>
+
+    
+   <div class="new-message content">
+    <% if (locals.currentUser) {%>
+        <h1>Hello  <%= locals.currentUser.firstname %>  <%= locals.currentUser.lastname %> </h1>
+                    <% if (locals.currentUser.id_membership_status === 3) {%>
+                        <p>STATUS = Normal User</p>
+                        <hr>
+                        <h3>Enter your secret membership code:</h3>
+                        <form action="/join_the_club" method="POST" autocomplete="off" novalidate>
+                            <%- include('./partials/errors.ejs') %>
+                            <label for="membership_code">Code: </label>
+                            <input type="password" id="membership_code" name="membership_code" autocomplete="off" required>
+                            <button type="submit">Submit</button>
+                        </form>
+
+
+                    <% } else { %>
+                        <p>You are already an active member of the club, no additional action is required.</p>
+                    <%}%>
+        <% } else { %>
+           
+            
+            
+        <h2>You are one step away from becoming a member of the club</h2>
+        <hr>
+        <h2>Please LOGIN to enter the code.</h2>
+        <form action="/log-in-for-join" method="POST" autocomplete="off" novalidate>
+            
+            <% if (locals.errors) {  %>
+                <p><%= errors %></p>
+            <%  } %>
+            
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" autocomplete="on" required>
+            <label for="user_password">Enter Password: </label>
+            <input type="password" id="user_password" name="password" autocomplete="off" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        
+        <%}%>
+    </div> 
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

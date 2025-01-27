@@ -1,16 +1,53 @@
 <!-- index.ejs -->
 <html>
-
+    
 <%- include('./partials/head.ejs') %>
 
     <body>
         <%- include('./partials/navbar.ejs') %>
 
-            <div class="content">
-                <h2>All Messages</h2>
-                <p>INICIANDO NUEVO PROYECTO</p>
-                 
+        <div>
+            <div>
+                <h1>please log in</h1>
             </div>
+            <div>
+                
+            <form action="/log-in" method="POST" autocomplete="off" novalidate>
+                              
+                <label for="username">Username: </label>
+                <input type="text" id="username" name="username" autocomplete="on" required>
+                <label for="user_password">Enter Password: </label>
+                <input type="password" id="user_password" name="password" autocomplete="off" required>
+                
+                <button>Submit</button>
+            </form>
+            </div>
+        </div>   
+        <hr>
+                  
+               
+                <div class="content">
+                    <h2>All Messages</h2>
+                    <div style="gap:10px;">
+                        <% if(messages.length>0) { %>
+                            <% messages.forEach( (message)=>{ %>
+                            <div>
+                                <div class="messages">
+                                   
+                                    <p class="messages">
+                                        <%= message.textm %>
+                                    </p>
+                                    
+                                    <% const index = message.id %>
+                                </div>
+                            </div>  
+                                <% }) %>
+                                    <% } else {%>
+                                        <p> There are no messages to display...</p>
+                                        <% } %>
+
+                </div>
+            
 
             <%- include('./partials/footer.ejs') %>
 

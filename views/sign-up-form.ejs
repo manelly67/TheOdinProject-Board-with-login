@@ -1,0 +1,44 @@
+<html lang="en">
+ 
+<%- include('./partials/head.ejs') %>
+
+
+<body>
+    <%- include('./partials/navbar') %>
+
+    
+   <div class="new-message content">
+    <% if (locals.user) {%>
+        <h1>Hello <%= user.username %></h1>
+        <p>To create a new user you must log out of your account.</p>
+        <p>Please log out...</p>
+        <hr>
+        <a href="/log-out-to-sign-up" style="width: 100px;">LOG OUT</a>
+      <% } else { %>
+
+
+        <form action="/sign-up" method="POST" autocomplete="off" novalidate>
+            <%- include('./partials/errors.ejs') %>
+            <label for="firstname">First Name: </label>
+            <input type="text" id="firstname" name="firstname" autocomplete="on" required>
+            <label for="lastname">Last Name: </label>
+            <input type="text" id="lastname" name="lastname" autocomplete="on" required>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" autocomplete="on" required>
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" autocomplete="on" title='can be the email' required >
+            <label for="user_password">Enter Password: </label>
+            <input type="password" id="user_password" name="user_password" autocomplete="off" title="<%= passwordRequirements %>" required>
+            <label for="confirm_password">Confirm Password: </label>
+            <input type="password" id="confirm_password" name="confirm_password" autocomplete="off"  required>
+                        
+            <button>Submit</button>
+        </form>
+
+        <% }  %>
+    </div> 
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+
+</html>

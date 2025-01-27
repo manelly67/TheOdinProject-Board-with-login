@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;1,700&display=swap');
+
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -49,7 +52,6 @@ table {
 
 /* end of reset of style browser */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;1,700&display=swap');
 
 body {
     max-width: 1200px;
@@ -66,7 +68,15 @@ p, h1, h2, h3, a, ul {
     color: #3c1b22;
 }
 
-
+h1 {
+    font-size: 2rem;
+}
+h2 {
+    font-size: 1.5rem;
+}
+h3 {
+    font-size: 1.2rem;
+}
 
 /* nav and footer styles*/
 nav {
@@ -88,27 +98,62 @@ nav li {
     list-style-type: none;
     margin-left: 20px;
 }
+
+nav>ul>li>div{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
 nav h1 {
     font-size: 2em;
     font-weight: 600;
 }
 
-nav p, nav a {
+nav p, nav a,
+.new-message > form > label {
     color: #d195a9;
     font-weight: 300;
     font-size: 1.3em;
 }
 
+nav + div {
+    margin-bottom: 60px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 @media (max-width: 421px) {
     nav h1{
     font-size: 1.7em;
-}   
+}  
+nav + div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+nav + div > div > form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 }
 
 footer{
     color: #d195a9;
     text-align: center;
     margin: 80px auto 20px;
+}
+
+.username {
+    color: #d195a9;
+    margin: 0px auto 5px;
+    margin-right: 0px;
+    border: 2px solid #c097a0;
+    padding: 3px;
 }
 
 h2 {
@@ -136,6 +181,9 @@ h3 {
     align-items: center;
 }
 
+.content > div > div {
+    max-width: 400px;
+}
 
 @media (max-width: 421px) {
     .content > div {
@@ -148,8 +196,8 @@ h3 {
 .messages {
     display: block;
     margin: 20px 0;
-    padding-left: 30px;
-    padding-right: 20px;
+    padding-left: 20px;
+    padding-right: 15px;
     border-left: 6px solid #663540;
 }
 
@@ -163,9 +211,12 @@ h3 {
 .new-message form{
     max-width: 400px;
     margin: 0 auto;  /*este margen display en el medio*/
+    display:flex;
+    flex-direction: column;
 }
 
 input {
+    width: 200px;
     border: 2px solid #3c1b22;
     border-radius: 3px;
     transition: background-color 0.25s;
@@ -181,7 +232,7 @@ input:valid, input:focus{
 
 .new-message input{
     display:block;
-    width: 100%;
+    width: 120%;
     margin: 10px 0;
     padding: 8px;
 }
@@ -191,9 +242,17 @@ input:valid, input:focus{
     margin-top: 24px;
 }
 
+textarea{
+    margin-top: 10px;
+    width: 300px;
+    height: 100px;
+}
 
 .new-message button,
-.messages + a {
+nav + div > div > form > button,
+.content a,
+.messages + a,
+#deleteButton {
     margin-top: 20px;
     background: #663540;
     color: #efdbe2;
@@ -203,6 +262,15 @@ input:valid, input:focus{
     cursor: pointer;
     transition: border-color 0.25s;
 }
+
+nav + div > div > form > button:hover,
+.new-message button:hover,
+.messages + a:hover,
+.content a:hover,
+#deleteButton:hover {
+    border-color: #e3beca;
+}
+
 
 /* details style*/
 
@@ -250,10 +318,8 @@ input:valid, input:focus{
     
 }
 
-.new-message button:hover,
-.messages + a:hover {
-    border-color: #e3beca;
-}
+
+
 
 .detail-message button:hover {
     border-color: #3c1b22;

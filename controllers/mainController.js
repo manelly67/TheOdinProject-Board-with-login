@@ -9,6 +9,10 @@ require('dotenv').config({ processEnv: myObject });
 const passwordRequirements =
   'Password must contain at least one number, one uppercase and lowercase letter, one special character, and at least 8 or more characters';
 const initialStatus = 3; // status 3 is normal user
+// code to change the status
+const adminPassword = process.env.ADMINPASSWORD || myObject.ADMINPASSWORD;
+const membershipPassword =
+  process.env.MEMBERSHIPPASSWORD || myObject.MEMBERSHIPPASSWORD;
 
 async function getHomePage(req, res) {
   switch (req.isAuthenticated()) {
@@ -164,7 +168,7 @@ const validateUser2 = [
     .isLength({ min: 1, max: 30 })
     .withMessage(`Code ${lengthErrJoin}`)
     .custom((value) => {
-      return value===myObject.MEMBERSHIPPASSWORD || value===myObject.ADMINPASSWORD;
+      return value === membershipPassword || value === adminPassword;
     })
     .withMessage(codeErr),
 ];
@@ -182,11 +186,11 @@ const joinPost = [
       });
     }
     if (req.user.id !== undefined) {
-      if (req.body.membership_code === myObject.MEMBERSHIPPASSWORD) {
+      if (req.body.membership_code === membershipPassword) {
         await db.updateStatus(req.user.id);
         res.redirect('/welcome');
       }
-      if (req.body.membership_code === myObject.ADMINPASSWORD) {
+      if (req.body.membership_code === adminPassword) {
         await db.updateToAdministrator(req.user.id);
         res.redirect('/welcome');
       }
